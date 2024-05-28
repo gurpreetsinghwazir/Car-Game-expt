@@ -14,6 +14,10 @@ let keys= {
     ArrowRight: false
 }
 
+let player= {
+
+}
+
 
 function keyPress(eventDetails){
     eventDetails.preventDefault();
@@ -33,9 +37,22 @@ function keyRelease(eventDetails){
     
 }    
 
+function gameplay(){
+    if(player.start){
+        console.log("gameplay");
+        requestAnimationFrame(gameplay);
+    }
+    
+}
+
+
 
 
 
 function start(evenDetails){
+    player.start = true // when i write the end code make sure to change this to false
     console.log("start");
+    startScreen.classList.add("hide");
+    gameArea.classList.remove("hide");
+    requestAnimationFrame(gameplay);
 }

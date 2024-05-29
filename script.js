@@ -45,15 +45,15 @@ function gameplay(){
 
 
     if(player.start){
-        if(keys.ArrowUp && player.y > road.top){
+        if(keys.ArrowUp && player.y > (road.top + 250)){
             player.y = player.y - player.speed;
         }
-        if(keys.ArrowDown && player.y < road.bottom){
+        if(keys.ArrowDown && player.y < (road.bottom-130)){
             player.y = player.y + player.speed;                
         }
         if(keys.ArrowRight && player.x > 0 ){
             player.x = player.x + player.speed;
-        } if(keys.ArrowLeft && player.x < 300){
+        } if(keys.ArrowLeft && player.x < (road.width - 50)){
             player.x = player.x - player.speed;
         }
         car.style.left= player.x + "px";

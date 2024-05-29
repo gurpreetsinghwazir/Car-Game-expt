@@ -15,8 +15,9 @@ let keys= {
 }
 
 let player= {
-
-}
+    speed:5,
+    start: false
+};
 
 
 function keyPress(eventDetails){
@@ -32,27 +33,59 @@ function keyRelease(eventDetails){
     eventDetails.preventDefault();
     let releasedKey = eventDetails.key;
     if(releasedKey === "ArrowUp" || releasedKey === "ArrowDown" || releasedKey === "ArrowLeft" || releasedKey === "ArrowRight"){
-        keys[releasedKey] = true;
+        keys[releasedKey] = false;
     }
     
 }    
 
 function gameplay(){
+    let car = document.querySelector(".car");
+    let road = gameArea.getBoundingClientRect()
+    console.log(road)
+
+
     if(player.start){
-        console.log("gameplay");
+        if(keys.ArrowUp && player.y > road.top){
+            player.y = player.y - player.speed;
+        }
+        if(keys.ArrowDown && player.y < road.bottom){
+            player.y = player.y + player.speed;                
+        }
+        if(keys.ArrowRight && player.x > 0 ){
+            player.x = player.x + player.speed;
+        } if(keys.ArrowLeft && player.x < 300){
+            player.x = player.x - player.speed;
+        }
+        car.style.left= player.x + "px";
+        car.style.top = player.y + "px";
+
+
+
         requestAnimationFrame(gameplay);
     }
     
 }
 
 
-
-
-
 function start(evenDetails){
-    player.start = true // when i write the end code make sure to change this to false
     console.log("start");
+    
     startScreen.classList.add("hide");
-    gameArea.classList.remove("hide");
-    requestAnimationFrame(gameplay);
+    gameArea.classList.remove("hide");   
+    player.start = true // when i write the end code make sure to change this to false
+
+    player.start = true;
+    requestAnimationFrame(gameplay); 
+
+    //lets make a car
+    let car = document.createElement("div");
+    car.className = "car";
+    car.innerHTML = "car";
+    gameArea.append(car);
+    
+    player.x = car.offsetLeft;
+    player.y = car.offsetTop;
+
+
 }
+

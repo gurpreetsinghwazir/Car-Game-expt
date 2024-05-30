@@ -5,7 +5,7 @@ html {
 .hide{
     display: none;
 }
-.car{
+.car,.enemy{
     position: absolute;
     bottom: 100px;
     left: 200px;
@@ -20,4 +20,11 @@ html {
     position: relative;
     margin: auto;
     overflow: hidden;
+}
+.divider{
+    position: absolute;
+    height: 100px;
+    width: 10px;
+    background-color: white;
+    margin: 145px;
 }
